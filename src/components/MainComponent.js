@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 
 const mapStateToProps = state => {
     return {
-        campsotes: state.campsites,
+        campsites: state.campsites,
         comments: state.comments,
         partners: state.partners,
         promotions: state.promotions
@@ -35,8 +35,8 @@ class Main extends Component {
         const CampsiteWithId = ({ match }) => {
             return (
                 <CampsiteInfo
-                    campsite={this.state.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
-                    comments={this.state.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
+                    campsite={this.props.campsites.filter(campsite => campsite.id === +match.params.campsiteId)[0]}
+                    comments={this.props.comments.filter(comment => comment.campsiteId === +match.params.campsiteId)}
                 />
             );
         };
@@ -46,10 +46,10 @@ class Main extends Component {
                 <Header />
                 <Switch>
                     <Route path='/home' component={HomePage} />
-                    <Route exact path='/directory' render={() => <Directory campsites={this.state.campsites} />} />
+                    <Route exact path='/directory' render={() => <Directory campsites={this.props.campsites} />} />
                     <Route path='/directory/:campsiteId' component={CampsiteWithId} />
                     <Route exact path='/contactus' component={Contact} />
-                    <Route path='/aboutus' render={() => <About partners={this.state.partners} />} />
+                    <Route path='/aboutus' render={() => <About partners={this.props.partners} />} />
                     <Redirect to='/home' />
                 </Switch>
                 <Footer />

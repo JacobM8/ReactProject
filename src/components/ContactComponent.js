@@ -161,7 +161,7 @@ class Contact extends Component {
                                     />
                                     <Errors
                                         className="text-danger"
-                                        model=".emai;l"
+                                        model=".email"
                                         show="touched"
                                         component="div"
                                         messages={{
