@@ -1,10 +1,12 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createForms } from 'react-redux-form';
 import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { Campsites } from './campsites';
 import { Comments } from './comments';
 import { Promotions } from './promotions';
 import { Partners } from './partners';
+import { InitialFeedback } from './forms';
 
 export const ConfigureStore = () => {
     const store = createStore(
@@ -12,7 +14,10 @@ export const ConfigureStore = () => {
             campsites: Campsites,
             comments: Comments,
             promotions: Promotions,
-            partners: Partners
+            partners: Partners,
+            ...createForms({
+                feddbackForm: InitialFeedback
+            })
         }),
         applyMiddleware(thunk, logger)
     );
